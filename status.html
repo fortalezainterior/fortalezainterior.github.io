@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fortaleza Interior — Publicações</title>
+<style>
+  /* Status board: robot state and next post on top, then one row per post grouped by day. Reads queue.json
+     and the publish workflow runs live from GitHub. */
+  :root {
+    --bg: #111; --panel: #1a1917; --line: #2c2a26; --fg: #f2ede4; --muted: #b9b2a5; --faint: #8c8578;
+    --gold: #d4af37; --ok: #5fbf7f; --warn: #e0a83a; --bad: #e0675a; --info: #7aa7d9;
+    --serif: Georgia, "Times New Roman", serif; --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.45 var(--sans); }
+  main { max-width: 680px; margin: 0 auto; padding-block: 32px 48px;
+         padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+         display: grid; gap: 24px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+  h1 { font: 28px/1.15 var(--serif); margin: 0; text-wrap: balance; }
+  h1 small { display: block; font: 13px var(--sans); color: var(--faint); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+  .refresh { display: flex; align-items: center; gap: 10px; color: var(--faint); font-size: 13px; }
+  button { font: inherit; color: var(--fg); background: transparent; border: 1px solid var(--line); border-radius: 8px;
+           padding: 6px 12px; cursor: pointer; }
+  button:hover { border-color: var(--gold); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; min-width: 0;
+          display: grid; gap: 6px; align-content: start; }
+  .label { font-size: 12px; color: var(--faint); letter-spacing: .06em; text-transform: uppercase; }
+  .big { font: 20px/1.25 var(--serif); }
+  .note { color: var(--muted); font-size: 13px; }
+  .note a, .post a { color: var(--gold); }
+  .state { display: flex; align-items: center; gap: 8px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--faint); flex: none; }
+  .dot.ok { background: var(--ok); } .dot.warn { background: var(--warn); } .dot.bad { background: var(--bad); }
+  .dot.live { background: var(--ok); box-shadow: 0 0 0 0 var(--ok); animation: pulse 2s infinite; }
+  @keyframes pulse { 70% { box-shadow: 0 0 0 8px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+  @media (prefers-reduced-motion: reduce) { .dot.live { animation: none; } }
+  .alert { border-color: var(--bad); }
+  .day { display: grid; gap: 8px; }
+  .day h2 { font: 13px var(--sans); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin: 0;
+            padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  .day.today h2 { color: var(--gold); }
+  .post { display: grid; grid-template-columns: 52px 1fr auto; gap: 4px 12px; align-items: start; padding: 8px 0; }
+  .time { font-variant-numeric: tabular-nums; color: var(--muted); padding-top: 1px; }
+  .body { min-width: 0; display: grid; gap: 2px; }
+  .kind { font-size: 12px; color: var(--faint); }
+  .caption { overflow-wrap: anywhere; }
+  .error { color: var(--bad); font-size: 13px; overflow-wrap: anywhere; }
+  .pill { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; white-space: nowrap; border: 1px solid; }
+  .pill.published { color: var(--ok); border-color: var(--ok); }
+  .pill.pending { color: var(--info); border-color: var(--info); }
+  .pill.publishing { color: var(--gold); border-color: var(--gold); }
+  .pill.late { color: var(--warn); border-color: var(--warn); }
+  .pill.failed { color: var(--bad); border-color: var(--bad); }
+  .empty { color: var(--faint); }
+  footer { color: var(--faint); font-size: 12px; }
+  footer a { color: var(--faint); }
+  @media (max-width: 420px) {
+    .post { grid-template-columns: 44px 1fr; }
+    .post .pill { grid-column: 2; justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1><small>@fortalezainterior.br</small>Publicações no Instagram</h1>
+    <div class="refresh"><span id="updated">Carregando…</span><button id="reload" type="button">Atualizar</button></div>
+  </header>
+
+  <section class="summary" aria-label="Resumo">
+    <div class="card" id="robot">
+      <span class="label">Robô de publicação</span>
+      <span class="state big"><span class="dot"></span><span>Verificando…</span></span>
+    </div>
+    <div class="card" id="next">
+      <span class="label">Próximo post</span>
+      <span class="big">Verificando…</span>
+    </div>
+  </section>
+
+  <section id="days" aria-label="Posts por dia"></section>
+
+  <footer>
+    Dados lidos do <a href="https://github.com/fortalezainterior/fortalezainterior.github.io/blob/main/queue.json">queue.json</a> e das
+    <a href="https://github.com/fortalezainterior/fortalezainterior.github.io/actions/workflows/publish.yml">execuções no GitHub</a>.
+    A fila pode levar até 5 min para refletir uma publicação. Atualiza sozinha a cada 2 min.
+  </footer>
+</main>
+<script>
+const REPO = "fortalezainterior/fortalezainterior.github.io";
+const QUEUE_URL = `https://raw.githubusercontent.com/${REPO}/main/queue.json`;
+const RUNS_URL = `https://api.github.com/repos/${REPO}/actions/workflows/publish.yml/runs?per_page=10`;
+const ACTIONS_URL = `https://github.com/${REPO}/actions/workflows/publish.yml`;
+const MEDIA_BASE = "https://fortalezainterior.github.io/media";
+const TZ = "America/Sao_Paulo";
+const PUBLISHING_GRACE_MIN = 10;  // a post this close after its time is still being published, not late
+const PAST_DAYS = 7;
+
+const dayKey = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" });
+const dayName = new Intl.DateTimeFormat("pt-BR", { timeZone: TZ, weekday: "long", day: "2-digit", month: "2-digit" });
+const clock = new Intl.DateTimeFormat("pt-BR", { timeZone: TZ, hour: "2-digit", minute: "2-digit" });
+
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (key === "class") node.className = value; else node.setAttribute(key, value);
+  }
+  for (const child of children) if (child != null) node.append(child);
+  return node;
+}
+
+function duration(ms) {
+  const minutes = Math.round(Math.abs(ms) / 60000);
+  if (minutes < 60) return `${minutes} min`;
+  const hours = Math.floor(minutes / 60), rest = minutes % 60;
+  if (hours < 24) return rest ? `${hours} h ${rest} min` : `${hours} h`;
+  const days = Math.floor(hours / 24);
+  return `${days} ${days === 1 ? "dia" : "dias"}${hours % 24 ? ` ${hours % 24} h` : ""}`;
+}
+
+function postStatus(entry, now) {
+  const ig = entry.platforms.instagram || {};
+  const late = now - new Date(entry.scheduled_at);
+  if (ig.status === "published") return { key: "published", text: "Publicado" };
+  if (ig.status === "failed") return { key: "failed", text: "Falhou" };
+  if (late < 0) return { key: "pending", text: "Agendado" };
+  if (late < PUBLISHING_GRACE_MIN * 60000) return { key: "publishing", text: "Publicando" };
+  return { key: "late", text: `Atrasado ${duration(late)}` };
+}
+
+function firstLine(caption) {
+  const line = (caption || "").split("\n").find(part => part.trim()) || "";
+  return line.length > 110 ? line.slice(0, 107).trimEnd() + "…" : line;
+}
+
+function renderRobot(runs, now) {
+  const card = document.getElementById("robot");
+  card.classList.remove("alert");
+  const active = runs.find(run => run.status === "in_progress");
+  const queued = runs.find(run => run.status === "queued" || run.status === "pending" || run.status === "waiting");
+  const last = runs.find(run => run.status === "completed");
+  let dot = "", text = "", note = "";
+  if (active) {
+    dot = "live"; text = "Ligado, esperando o próximo post";
+    note = `Execução atual começou há ${duration(now - new Date(active.run_started_at || active.created_at))}.`;
+  } else if (queued) {
+    dot = "ok"; text = "Ligado, na fila para rodar";
+  } else {
+    dot = "bad"; text = "Parado"; card.classList.add("alert");
+    note = "Nenhuma execução rodando. O agendamento de hora em hora deve religar; se não religar, rode o publish manualmente no GitHub.";
+  }
+  if (last && last.conclusion && last.conclusion !== "success" && last.conclusion !== "cancelled") {
+    note += ` A última execução terminou com erro (${last.conclusion}).`;
+    if (dot !== "bad") dot = "warn";
+  }
+  card.replaceChildren(
+    el("span", { class: "label" }, "Robô de publicação"),
+    el("span", { class: "state big" }, el("span", { class: `dot ${dot}` }), el("span", {}, text)),
+    note ? el("span", { class: "note" }, note) : null,
+    el("span", { class: "note" }, el("a", { href: ACTIONS_URL, rel: "noopener" }, "Ver execuções no GitHub")),
+  );
+}
+
+function renderRobotUnknown(message) {
+  document.getElementById("robot").replaceChildren(
+    el("span", { class: "label" }, "Robô de publicação"),
+    el("span", { class: "state big" }, el("span", { class: "dot" }), el("span", {}, "Sem informação agora")),
+    el("span", { class: "note" }, message, " ", el("a", { href: ACTIONS_URL, rel: "noopener" }, "Ver no GitHub")),
+  );
+}
+
+function renderNext(queue, now) {
+  const card = document.getElementById("next");
+  card.classList.remove("alert");
+  const late = queue.filter(entry => postStatus(entry, now).key === "late");
+  const upcoming = queue
+    .filter(entry => (entry.platforms.instagram || {}).status === "pending" && new Date(entry.scheduled_at) > now)
+    .sort((a, b) => new Date(a.scheduled_at) - new Date(b.scheduled_at));
+  const children = [el("span", { class: "label" }, "Próximo post")];
+  if (upcoming.length) {
+    const next = upcoming[0], at = new Date(next.scheduled_at);
+    children.push(
+      el("span", { class: "big" }, `${dayName.format(at)}, ${clock.format(at)}`),
+      el("span", { class: "note" }, `Em ${duration(at - now)} · ${next.type === "reel" ? "reel" : "carrossel"}: ${firstLine(next.caption)}`),
+    );
+  } else {
+    children.push(el("span", { class: "big" }, "Nada agendado"),
+                  el("span", { class: "note" }, "A rotina de segunda gera o próximo lote."));
+  }
+  if (late.length) {
+    card.classList.add("alert");
+    children.push(el("span", { class: "error" }, `${late.length} ${late.length === 1 ? "post atrasado" : "posts atrasados"}: veja abaixo.`));
+  }
+  card.replaceChildren(...children);
+}
+
+function renderDays(queue, now) {
+  const todayKey = dayKey.format(now);
+  const oldest = new Date(now - PAST_DAYS * 86400000);
+  const byDay = new Map();
+  queue
+    .filter(entry => new Date(entry.scheduled_at) >= oldest || postStatus(entry, now).key !== "published")
+    .sort((a, b) => new Date(a.scheduled_at) - new Date(b.scheduled_at))
+    .forEach(entry => {
+      const key = dayKey.format(new Date(entry.scheduled_at));
+      if (!byDay.has(key)) byDay.set(key, []);
+      byDay.get(key).push(entry);
+    });
+  const sections = [];
+  for (const [key, entries] of byDay) {
+    const date = new Date(entries[0].scheduled_at);
+    const title = key === todayKey ? `Hoje · ${dayName.format(date)}` : dayName.format(date);
+    sections.push(el("div", { class: `day${key === todayKey ? " today" : ""}` },
+      el("h2", {}, title),
+      ...entries.map(entry => renderPost(entry, now))));
+  }
+  const container = document.getElementById("days");
+  container.style.display = "grid"; container.style.gap = "20px";
+  container.replaceChildren(...(sections.length ? sections : [el("p", { class: "empty" }, "A fila está vazia.")]));
+}
+
+function renderPost(entry, now) {
+  const status = postStatus(entry, now), ig = entry.platforms.instagram || {};
+  const body = el("div", { class: "body" },
+    el("span", { class: "kind" }, entry.type === "reel" ? "Reel" : "Carrossel"),
+    el("span", { class: "caption" }, firstLine(entry.caption)));
+  if (ig.last_error && status.key !== "published") body.append(el("span", { class: "error" }, ig.last_error));
+  if (status.key !== "published" && entry.media && entry.media.length) {
+    body.append(el("span", { class: "note" },
+      el("a", { href: `${MEDIA_BASE}/${entry.id}/${entry.media[0]}`, rel: "noopener" }, "Ver mídia")));
+  }
+  return el("div", { class: "post" },
+    el("span", { class: "time" }, clock.format(new Date(entry.scheduled_at))),
+    body,
+    el("span", { class: `pill ${status.key}` }, status.text));
+}
+
+async function load() {
+  const now = new Date();
+  document.getElementById("updated").textContent = "Atualizando…";
+  const [queueResult, runsResult] = await Promise.allSettled([
+    fetch(`${QUEUE_URL}?t=${now.getTime()}`, { cache: "no-store" }).then(r => {
+      if (!r.ok) throw new Error(`fila respondeu ${r.status}`); return r.json();
+    }),
+    fetch(RUNS_URL, { cache: "no-store" }).then(r => {
+      if (r.status === 403 || r.status === 429) throw new Error("O GitHub limitou as consultas; tente de novo em alguns minutos.");
+      if (!r.ok) throw new Error(`O GitHub respondeu ${r.status}.`); return r.json();
+    }),
+  ]);
+  if (queueResult.status === "fulfilled") {
+    renderNext(queueResult.value, now);
+    renderDays(queueResult.value, now);
+  } else {
+    document.getElementById("days").replaceChildren(
+      el("p", { class: "error" }, `Não consegui ler a fila (${queueResult.reason.message}). Confira a internet e toque em Atualizar.`));
+  }
+  if (runsResult.status === "fulfilled") renderRobot(runsResult.value.workflow_runs || [], now);
+  else renderRobotUnknown(runsResult.reason.message);
+  document.getElementById("updated").textContent = `Atualizado às ${clock.format(now)}`;
+}
+
+document.getElementById("reload").addEventListener("click", load);
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>
