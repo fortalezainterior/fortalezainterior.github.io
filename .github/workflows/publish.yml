@@ -1,0 +1,81 @@
+name: publish
+
+# Source of truth: public_files/ in the private stoic-autopilot repository (generator/public_repo.py copies it here).
+
+# GitHub's cron runs hours late or skips runs, so a job does not rely on it: after publishing what is due it
+# sleeps until the next pending post (at most 5 h, see publisher/wait.py), publishes it and dispatches the next
+# job. The cron and pushes of queue.json only restart that chain if it ever stops.
+on:
+  schedule:
+    - cron: "5 * * * *"
+  push:
+    branches: [main]
+    paths: [queue.json]
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Publish this queue id now (ignores its schedule)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Only list what would be published"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  actions: write  # dispatch the next job of the chain
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355  # GitHub's limit is 360; the wait is capped at 300
+    env:
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+      PAGES_BASE_URL: ${{ vars.PAGES_BASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Latest main, not the triggering commit: a run queued behind another must see the queue it updated,
+          # otherwise it would republish posts the previous run already published.
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements-publisher.txt
+      - name: Publish due posts
+        timeout-minutes: 20  # leaves time for the commit step, which also runs after a timeout
+        env:
+          ONLY: ${{ inputs.only }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          args=(--queue queue.json)
+          if [ -n "$ONLY" ]; then args+=(--only "$ONLY"); fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          python -m publisher.run "${args[@]}"
+      - name: Commit queue status
+        if: always()
+        run: bash .github/scripts/commit-queue.sh
+      - name: Wait for the next post
+        id: wait
+        if: ${{ !cancelled() && !inputs.only && !inputs.dry_run }}
+        run: python -m publisher.wait --queue queue.json
+      - name: Publish after waiting
+        if: ${{ !cancelled() && steps.wait.outputs.has_pending == 'true' }}
+        timeout-minutes: 20
+        run: |
+          git pull --ff-only  # a weekly batch may have been pushed while this job slept
+          python -m publisher.run --queue queue.json
+      - name: Commit queue status after waiting
+        if: ${{ always() && steps.wait.outputs.has_pending == 'true' }}
+        run: bash .github/scripts/commit-queue.sh
+      - name: Start the next job
+        if: ${{ !cancelled() && steps.wait.outputs.has_pending == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publish.yml --ref main
