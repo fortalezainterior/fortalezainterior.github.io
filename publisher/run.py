@@ -33,7 +33,8 @@ def _select(queue, now, only) -> list[dict]:
 
 def _publish(client, entry, urls) -> str:
     if entry["type"] == "reel":
-        return client.publish_reel(urls[0], entry["caption"])
+        # media is ["reel.mp4", "cover.jpg"]; entries queued before covers existed have only the video.
+        return client.publish_reel(urls[0], entry["caption"], cover_url=urls[1] if len(urls) > 1 else None)
     return client.publish_carousel(urls, entry["caption"])
 
 

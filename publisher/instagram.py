@@ -64,9 +64,11 @@ class InstagramClient:
         self.wait_until_ready(container_id)
         return self._post(f"{self.user_id}/media_publish", creation_id=container_id)["id"]
 
-    def publish_reel(self, video_url: str, caption: str) -> str:
+    def publish_reel(self, video_url: str, caption: str, cover_url: str | None = None) -> str:
+        # Without cover_url the Reels tab and profile grid show the video's first frame.
+        cover = {"cover_url": cover_url} if cover_url else {}
         container = self._post(f"{self.user_id}/media", media_type="REELS", video_url=video_url,
-                               caption=caption, share_to_feed="true")["id"]
+                               caption=caption, share_to_feed="true", **cover)["id"]
         return self._publish(container)
 
     def publish_carousel(self, image_urls: list[str], caption: str) -> str:
