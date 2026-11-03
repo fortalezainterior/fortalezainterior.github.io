@@ -343,5 +343,235 @@
         "last_error": null
       }
     }
+  },
+  {
+    "id": "2026-11-04-r1",
+    "type": "reel",
+    "scheduled_at": "2026-11-04T12:00:00-03:00",
+    "caption": "Marco Aurélio, Meditações 4.7: elimine a opinião de que foi prejudicado, e o prejuízo desaparece. A ofensa acontece lá fora; o dano, só se você concordar. Qual ofensa você vai soltar hoje?\n\n#estoicismo #marcoaurelio #autocontrole #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r2",
+    "type": "reel",
+    "scheduled_at": "2026-11-05T12:00:00-03:00",
+    "caption": "Epicteto, Manual 14: quem deseja ser livre não deve desejar nem evitar nada que dependa dos outros. Aprovação alheia é uma corrente confortável. De quem é a aprovação que mais pesa na sua vida hoje?\n\n#estoicismo #epicteto #liberdade #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-c1",
+    "type": "carousel",
+    "scheduled_at": "2026-11-05T19:00:00-03:00",
+    "caption": "Sêneca ensinava a ensaiar as dificuldades antes que elas cheguem: quem se preparou não entra em pânico. Não é pessimismo, é treino. Qual problema desta semana você pode ensaiar desde já?\n\n#estoicismo #seneca #resiliencia #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r3",
+    "type": "reel",
+    "scheduled_at": "2026-11-06T12:00:00-03:00",
+    "caption": "Schopenhauer, Conselhos e máximas: é covarde a alma que desanima quando a primeira nuvem surge no horizonte. A maior parte das tempestades que tememos nunca chega. O que você está adiando por medo de algo que ainda não aconteceu?\n\n#estoicismo #schopenhauer #coragem #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r4",
+    "type": "reel",
+    "scheduled_at": "2026-11-07T12:00:00-03:00",
+    "caption": "Sêneca, Sobre a ira III.36: ao fim do dia, Sêxtio perguntava à própria alma que mau hábito tinha curado. Cinco minutos de revisão por noite valem mais que uma grande promessa por ano. Para praticar todos os dias, o Diário Estoico de 30 dias está no link da bio. Qual das três perguntas é a mais difícil para você?\n\n#estoicismo #seneca #disciplina #habitos #diarioestoico",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-c2",
+    "type": "carousel",
+    "scheduled_at": "2026-11-07T19:00:00-03:00",
+    "caption": "Marco Aurélio e Sócrates concordavam: pagar o mal com o mal é deixar o outro decidir quem você é. A raiva parece força, mas é sinal de fraqueza. Como você costuma reagir quando alguém te provoca?\n\n#estoicismo #marcoaurelio #socrates #raiva #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r5",
+    "type": "reel",
+    "scheduled_at": "2026-11-08T12:00:00-03:00",
+    "caption": "Sêneca, Cartas a Lucílio 1.2: erramos ao ver a morte à nossa frente; grande parte dela já passou. Lembrar disso não é mórbido, é dar valor a cada dia. O que você cortaria da sua agenda se levasse isso a sério?\n\n#estoicismo #seneca #mementomori #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r6",
+    "type": "reel",
+    "scheduled_at": "2026-11-09T12:00:00-03:00",
+    "caption": "Sêneca, Cartas a Lucílio 98.7: não há nada mais miserável nem mais tolo do que o medo antecipado. Sofrer antes da hora é pagar uma conta que talvez nunca chegue. Baixe grátis o Mini Diário Estoico no link da bio e treine isso por 7 dias. O que você está sofrendo por antecipação agora?\n\n#estoicismo #seneca #ansiedade #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-c3",
+    "type": "carousel",
+    "scheduled_at": "2026-11-09T19:00:00-03:00",
+    "caption": "Marco Aurélio, Epicteto e Sêneca contra o adiamento: o problema raramente é falta de força, é preferir ser bom amanhã. Grandes mudanças crescem como o figo, devagar e todo dia. O Diário Estoico de 30 dias está no link da bio. Qual tarefa você vai parar de adiar hoje?\n\n#estoicismo #disciplina #procrastinacao #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-04-r7",
+    "type": "reel",
+    "scheduled_at": "2026-11-10T12:00:00-03:00",
+    "caption": "Epicteto, Discursos 1.1: podem prender a sua perna, mas a sua vontade nem Zeus pode dominar. Esta é a fortaleza interior: o que ninguém consegue tirar de você. O que, na sua vida, é só seu?\n\n#estoicismo #epicteto #fortalezainterior #filosofia",
+    "media": [
+      "reel.mp4"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
   }
 ]
