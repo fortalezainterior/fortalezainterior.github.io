@@ -573,5 +573,29 @@
         "last_error": null
       }
     }
+  },
+  {
+    "id": "extra-2026-11-10-r1",
+    "type": "reel",
+    "scheduled_at": "2026-11-10T12:00:00-03:00",
+    "caption": "Marco Aurélio, Meditações 12.17: se não é certo, não faça. Se não é verdade, não diga. Qual das duas perguntas é mais difícil de respeitar no seu dia?\n\n#estoicismo #marcoaurelio #disciplina #carater #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
   }
 ]
