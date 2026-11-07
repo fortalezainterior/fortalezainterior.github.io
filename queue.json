@@ -475,9 +475,9 @@
     ],
     "platforms": {
       "instagram": {
-        "status": "pending",
+        "status": "published",
         "attempts": 0,
-        "published_id": null,
+        "published_id": "18200153989384686",
         "last_error": null
       }
     }
