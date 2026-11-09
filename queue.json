@@ -597,5 +597,242 @@
         "last_error": null
       }
     }
+  },
+  {
+    "id": "2026-11-11-r1",
+    "type": "reel",
+    "scheduled_at": "2026-11-11T12:00:00-03:00",
+    "caption": "Epicteto, Manual 5: os homens não se perturbam com as coisas, mas com as opiniões sobre elas. O fato chega neutro; o peso é você quem coloca. Qual opinião sua tem pesado mais do que o próprio fato?\n\n#estoicismo #epicteto #autocontrole #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r2",
+    "type": "reel",
+    "scheduled_at": "2026-11-12T12:00:00-03:00",
+    "caption": "Sêneca, Cartas a Lucílio 98.1: a alegria que entrou de fora um dia irá embora. Quem depende só da prosperidade apoia a vida num galho frágil. O livro está no link da bio. Qual parte da sua paz depende de algo que não é seu?\n\n#estoicismo #seneca #felicidade #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-c1",
+    "type": "carousel",
+    "scheduled_at": "2026-11-12T19:00:00-03:00",
+    "caption": "Sêneca, Marco Aurélio e Epicteto concordavam: dificuldade não é desvio, é parte da estrada. Quem espera uma vida sem poeira e chuva sofre duas vezes. Baixe grátis o Mini Diário Estoico no link da bio. Qual dificuldade desta semana está te treinando?\n\n#estoicismo #seneca #marcoaurelio #resiliencia #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r3",
+    "type": "reel",
+    "scheduled_at": "2026-11-13T12:00:00-03:00",
+    "caption": "Marco Aurélio, Meditações 4.49: seja como o promontório contra o qual as ondas se quebram sem parar. A rocha não espera o mar se acalmar para ficar de pé. Qual onda está batendo em você esta semana?\n\n#estoicismo #marcoaurelio #resiliencia #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r4",
+    "type": "reel",
+    "scheduled_at": "2026-11-14T12:00:00-03:00",
+    "caption": "Epicteto, Discursos 2.18: não alimente o hábito; no início, conte os dias em que não se irritou. Constância vence força de vontade. Para praticar dia após dia, o Diário Estoico de 30 dias está no link da bio. Qual hábito você vai parar de alimentar a partir de hoje?\n\n#estoicismo #epicteto #disciplina #habitos #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-c2",
+    "type": "carousel",
+    "scheduled_at": "2026-11-14T19:00:00-03:00",
+    "caption": "Marco Aurélio, Sêneca e Sócrates sobre o tempo: a vida não termina de uma vez, ela escorre a cada dia. Lembrar disso não é mórbido, é o que dá peso às escolhas de hoje. O que você vem adiando que não deveria?\n\n#estoicismo #mementomori #marcoaurelio #socrates #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r5",
+    "type": "reel",
+    "scheduled_at": "2026-11-15T12:00:00-03:00",
+    "caption": "Sêneca, Cartas a Lucílio 93.2: para uma vida longa basta o destino, mas para viver bem é preciso a alma. Duração não depende de você; o uso do dia, sim. O livro está no link da bio. O que você faria diferente hoje se levasse isso a sério?\n\n#estoicismo #seneca #mementomori #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r6",
+    "type": "reel",
+    "scheduled_at": "2026-11-16T12:00:00-03:00",
+    "caption": "Sêneca, Cartas a Lucílio 116.3: toda emoção, no início, é fraca; é mais fácil impedi-la do que abandoná-la. O momento de agir é a faísca, não o incêndio. Baixe grátis o Mini Diário Estoico no link da bio e treine isso por 7 dias. Qual é o seu primeiro sinal de que a raiva está chegando?\n\n#estoicismo #seneca #raiva #autocontrole",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-c3",
+    "type": "carousel",
+    "scheduled_at": "2026-11-16T19:00:00-03:00",
+    "caption": "Epicteto, Sêneca, Schopenhauer e Marco Aurélio concordavam: filosofia não se exibe, se pratica. Princípio que só aparece no discurso ainda não virou caráter. O Diário Estoico de 30 dias está no link da bio. Qual plano você vai cumprir hoje sem anunciar?\n\n#estoicismo #disciplina #epicteto #seneca #filosofia",
+    "media": [
+      "slide-01.jpg",
+      "slide-02.jpg",
+      "slide-03.jpg",
+      "slide-04.jpg",
+      "slide-05.jpg",
+      "slide-06.jpg",
+      "slide-07.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
+  },
+  {
+    "id": "2026-11-11-r7",
+    "type": "reel",
+    "scheduled_at": "2026-11-17T12:00:00-03:00",
+    "caption": "Schopenhauer, A sabedoria da vida: um caráter bom pode ser feliz mesmo na necessidade; o cobiçoso e invejoso vive infeliz, ainda que seja o mais rico do mundo. A paz depende mais de quem você é do que do que você tem. O que você já tem e não está valorizando?\n\n#estoicismo #schopenhauer #carater #filosofia",
+    "media": [
+      "reel.mp4",
+      "cover.jpg"
+    ],
+    "platforms": {
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      },
+      "tiktok": {
+        "status": "manual",
+        "attempts": 0,
+        "published_id": null,
+        "last_error": null
+      }
+    }
   }
 ]
