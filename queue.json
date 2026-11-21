@@ -1042,10 +1042,10 @@
     ],
     "platforms": {
       "instagram": {
-        "status": "pending",
+        "status": "published",
         "attempts": 1,
-        "published_id": null,
-        "last_error": "2026-11-18-c2: HTTP 400: Media ID is not available"
+        "published_id": "18079766924722480",
+        "last_error": null
       }
     }
   },
